@@ -1,0 +1,90 @@
+App.js
+import React, { useState } from "react";
+import "./App.css";
+
+function App() {
+  const [candidates, setCandidates] = useState([
+    { id: 1, name: "Alice", votes: 0 },
+    { id: 2, name: "Bob", votes: 0 },
+    { id: 3, name: "Charlie", votes: 0 }
+  ]);
+
+  const handleVote = (id) => {
+    setCandidates(
+      candidates.map((c) =>
+        c.id === id ? { ...c, votes: c.votes + 1 } : c
+      )
+    );
+  };
+
+  const totalVotes = candidates.reduce((sum, c) => sum + c.votes, 0);
+
+  const winner =
+    totalVotes > 0
+      ? candidates.reduce((max, c) => (c.votes > max.votes ? c : max))
+      : null;
+
+  return (
+    <div className="container">
+      <h2>React Voting Application</h2>
+      <div className="candidates">
+        {candidates.map((c) => (
+          <div key={c.id} className="card">
+            <h3>{c.name}</h3>
+            <p>Votes: {c.votes}</p>
+            <button onClick={() => handleVote(c.id)}>Vote</button>
+          </div>
+        ))}
+      </div>
+
+      <div className="results">
+        <h3>Total Votes: {totalVotes}</h3>
+        {winner && <p>🏆 Current Winner: {winner.name}</p>}
+      </div>
+    </div>
+  );
+}
+
+export default App;
+
+App.css
+.container {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 20px;
+  text-align: center;
+  font-family: Arial, sans-serif;
+}
+
+.candidates {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+
+.card {
+  background: #f4f4f4;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  width: 150px;
+}
+
+button {
+  margin-top: 10px;
+  padding: 8px 12px;
+  background: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #0056b3;
+}
+
+.results {
+  margin-top: 30px;
+  font-size: 18px;
+}
