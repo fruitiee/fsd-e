@@ -1,0 +1,49 @@
+index.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registration Form - Count Elements</title>
+</head>
+<body>
+  <h1>Registration Form</h1>
+
+  <form id="regForm">
+    <label>First name: <input type="text" name="firstName"></label><br><br>
+    <label>Last name: <input type="text" name="lastName"></label><br><br>
+    <label>Email: <input type="email" name="email"></label><br><br>
+    <label>Password: <input type="password" name="password"></label><br><br>
+
+    <label>Gender:
+      <input type="radio" name="gender" value="male"> Male
+      <input type="radio" name="gender" value="female"> Female
+    </label><br><br>
+
+    <label>Country:
+      <select name="country">
+        <option>India</option>
+        <option>USA</option>
+        <option>UK</option>
+      </select>
+    </label><br><br>
+
+    <label>Bio: <textarea name="bio" rows="3" cols="30"></textarea></label><br><br>
+
+    <button type="submit">Register</button>
+  </form>
+
+  <br>
+  <button onclick="countElements()">Count Form Elements</button>
+  <p id="result"></p>
+
+  <script>
+    function countElements() {
+      const form = document.getElementById("regForm");
+      const total = form.elements.length; // counts all inputs, selects, textareas
+      document.getElementById("result").innerText =
+        "Total number of elements in the form: " + total;
+    }
+  </script>
+</body>
+</html>
