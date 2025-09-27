@@ -1,0 +1,38 @@
+index.html
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+<meta charset="UTF-8"> 
+<title>Simple User Search</title> 
+</head> 
+<body> 
+<h2>User Search</h2> 
+<input type="number" id="searchId" placeholder="Enter User ID"> 
+<button onclick="searchUser()">Search</button> 
+<div id="result" style="margin-top:20px; font-weight:bold;"></div> 
+<script> 
+// Manual user list 
+const users = [ 
+{ id: 1, name: "Asha Rao", mobile: "9876543210",mail:"asha@gmail.com" }, 
+{ id: 5, name: "Meera Patel", mobile: "9123456780",mail:"meera@gmail.com" }, 
+{ id: 15, name: "Vikram Kumar", mobile: "9988776655",mail:"vikram@gmail.com" }, 
+{ id: 21, name: "Sonia Verma", mobile: "9012345678" ,mail:"sonia@gmail.com"} 
+]; 
+function searchUser() { 
+const inputId = document.getElementById("searchId").value; 
+const resultDiv = document.getElementById("result"); 
+// Find matching user 
+const user = users.find(u => u.id == inputId); 
+if (user) { 
+resultDiv.innerHTML = `Found: <br> 
+Name: ${user.name}<br> 
+ID: ${user.id}<br> 
+Mobile: ${user.mobile}<br> 
+Mail: ${user.mail}`; 
+} else { 
+resultDiv.innerHTML = "No user found with that ID."; 
+} 
+} 
+</script> 
+</body> 
+</html>
