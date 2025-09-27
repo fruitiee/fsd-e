@@ -1,0 +1,72 @@
+index.html
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Mouse Events with jQuery</title>
+  <!-- Link to jQuery library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <!-- Link to the JavaScript file -->
+  <script src="mouse-events.js" defer></script>
+  <style>
+    .box {
+      width: 150px;
+      height: 150px;
+      background-color: lightblue;
+      margin: 20px;
+      display: inline-block;
+      text-align: center;
+      line-height: 150px;
+      font-size: 18px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h2>Manage Mouse Events</h2>
+
+  <div class="box" id="click-box">Click Me</div>
+  <div class="box" id="dblclick-box">Double Click Me</div>
+  <div class="box" id="hover-box">Hover Over Me</div>
+
+  <p id="message" style="font-size: 20px; color: red;"></p>
+</body>
+</html>
+
+mouse-events.js
+$(document).ready(function () {
+  const $message = $("#message");
+
+  // Click event
+  $("#click-box").click(function () {
+    $message.stop(true, true)
+      .text("You clicked the box!")
+      .fadeIn()
+      .delay(1000)
+      .fadeOut();
+  });
+
+  // Double click event
+  $("#dblclick-box").dblclick(function () {
+    $message.stop(true, true)
+      .text("You double-clicked the box!")
+      .fadeIn()
+      .delay(1000)
+      .fadeOut();
+  });
+
+  // Hover event
+  $("#hover-box").hover(
+    function () {
+      $message.stop(true, true)
+        .text("You hovered over the box!")
+        .fadeIn();
+      $(this).css("background-color", "lightgreen");
+    },
+    function () {
+      $message.stop(true, true)
+        .text("You stopped hovering over the box!")
+        .fadeIn();
+      $(this).css("background-color", "lightblue");
+    }
+  );
+});
